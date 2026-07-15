@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Library Log',
-    template: '%s | Library Log',
+    default: 'Book Log',
+    template: '%s | Book Log',
   },
   description: '나만의 독서 기록과 도서 관리 서비스',
 };

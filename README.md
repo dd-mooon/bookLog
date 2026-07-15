@@ -1,4 +1,4 @@
-# Library Log
+# Book Log
 
 독서 기록을 관리하는 Next.js 기반 웹 애플리케이션입니다.
 

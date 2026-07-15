@@ -9,7 +9,7 @@ export default function HomePage() {
     <section className="flex flex-col gap-8">
       <div className="flex flex-col gap-3">
         <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-          Library Log
+          Book Log
         </h1>
         <p className="text-foreground/70 max-w-xl">
           읽고 싶은 책, 읽는 중인 책, 다 읽은 책을 한곳에서 기록하고 관리하세요.
