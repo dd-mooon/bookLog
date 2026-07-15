@@ -17,17 +17,17 @@ export default function HomePage() {
       </div>
 
       <div className="flex flex-wrap gap-3">
-        <Link href={ROUTES.BOOKS}>
-          <Button>도서 목록 보기</Button>
+        <Link href={ROUTES.POSTS}>
+          <Button>게시판 보기</Button>
         </Link>
-        <Link href={ROUTES.BOOK_NEW}>
-          <Button variant="secondary">새 책 추가</Button>
+        <Link href={ROUTES.POST_WRITE}>
+          <Button variant="secondary">글쓰기</Button>
         </Link>
       </div>
 
       <EmptyState
-        title="아직 등록된 도서가 없습니다"
-        description="첫 책을 추가하고 독서 기록을 시작해 보세요."
+        title="아직 등록된 게시글이 없습니다"
+        description="첫 게시글을 작성하고 독서 기록을 시작해 보세요."
       />
     </section>
   );

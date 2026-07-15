@@ -51,20 +51,25 @@ export function Header() {
           className="hidden items-center gap-8 md:flex"
           aria-label="주요 메뉴"
         >
-          {NAV_ITEMS.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                'text-sm transition-colors',
-                pathname === item.href
-                  ? 'text-foreground font-medium'
-                  : 'text-foreground/70 hover:text-foreground',
-              )}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {NAV_ITEMS.map((item) => {
+            const isActive =
+              pathname === item.href || pathname.startsWith(`${item.href}/`);
+
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  'text-sm transition-colors',
+                  isActive
+                    ? 'text-foreground font-medium'
+                    : 'text-foreground/70 hover:text-foreground',
+                )}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="hidden md:block">
@@ -120,20 +125,25 @@ export function Header() {
           className="mx-auto flex w-full max-w-5xl flex-col gap-1 px-4 py-3 sm:px-6"
           aria-label="모바일 메뉴"
         >
-          {NAV_ITEMS.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                'rounded-md px-3 py-3 text-sm transition-colors',
-                pathname === item.href
-                  ? 'bg-foreground/5 text-foreground font-medium'
-                  : 'text-foreground/80 hover:bg-foreground/5',
-              )}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {NAV_ITEMS.map((item) => {
+            const isActive =
+              pathname === item.href || pathname.startsWith(`${item.href}/`);
+
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  'rounded-md px-3 py-3 text-sm transition-colors',
+                  isActive
+                    ? 'bg-foreground/5 text-foreground font-medium'
+                    : 'text-foreground/80 hover:bg-foreground/5',
+                )}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
           <Link href={ROUTES.LOGIN} className="mt-2 px-3 pb-1">
             <Button variant="secondary" className="h-10 w-full">
               로그인
