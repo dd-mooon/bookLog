@@ -1,0 +1,22 @@
+{
+  "name": "book-log-backend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "db:migrate": "tsx src/db/migrate.ts",
+    "db:seed": "tsx src/db/seed.ts",
+    "db:setup": "npm run db:migrate && npm run db:seed"
+  },
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/node": "^20.19.43",
+    "@types/pg": "^8.15.5",
+    "bcrypt": "^5.1.1",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  }
+}
