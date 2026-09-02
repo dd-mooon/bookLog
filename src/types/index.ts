@@ -1,10 +1,16 @@
 export type {
-  Book,
-  CreateBookPayload,
-  ReadingStatus,
-  UpdateBookPayload,
-} from './book';
-export type { CreatePostPayload, Post, UpdatePostPayload } from './post';
+  CreatePostPayload,
+  PaginatedPosts,
+  Pagination,
+  Post,
+  UpdatePostPayload,
+} from './post';
+export type {
+  Comment,
+  CreateCommentPayload,
+  UpdateCommentPayload,
+} from './comment';
+export type { LoginPayload, LoginResponse, SignupPayload, User } from './auth';
 
 export interface ApiResponse<T> {
   data: T;

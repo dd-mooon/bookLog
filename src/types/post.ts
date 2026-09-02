@@ -1,10 +1,10 @@
 export interface Post {
-  id: string;
+  id: number;
   title: string;
   content: string;
-  authorId: string;
+  userId: number;
   authorName: string;
-  bookTitle?: string;
+  bookTitle?: string | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -16,3 +16,15 @@ export interface CreatePostPayload {
 }
 
 export type UpdatePostPayload = Partial<CreatePostPayload>;
+
+export interface Pagination {
+  page: number;
+  limit: number;
+  total: number;
+  totalPages: number;
+}
+
+export interface PaginatedPosts {
+  items: Post[];
+  pagination: Pagination;
+}

@@ -1,6 +1,6 @@
 # 06. Frontend 연동
 
-**상태:** 🟡 UI·구조만 (API 미연동)  
+**상태:** ✅ 완료  
 **선행:** [02-backend-api](./02-backend-api.md), [03-auth](./03-auth.md)  
 **병행:** [04-posts](./04-posts.md), [05-comments](./05-comments.md)
 

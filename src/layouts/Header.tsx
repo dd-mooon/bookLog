@@ -2,14 +2,17 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 import { Button } from '@/components/ui';
 import { NAV_ITEMS, ROUTES } from '@/constants';
 import { cn } from '@/lib';
+import { useAuthStore } from '@/store';
 
 export function Header() {
   const pathname = usePathname();
+  const router = useRouter();
+  const { token, user, logout, isHydrated } = useAuthStore();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -35,6 +38,32 @@ export function Header() {
       document.body.style.overflow = '';
     };
   }, [isMenuOpen]);
+
+  function handleLogout() {
+    logout();
+    router.push(ROUTES.HOME);
+  }
+
+  const authArea =
+    isHydrated && token && user ? (
+      <div className="flex items-center gap-3">
+        <Link
+          href={ROUTES.MYPAGE}
+          className="text-foreground/70 hover:text-foreground text-sm"
+        >
+          {user.nickname}
+        </Link>
+        <Button variant="secondary" className="h-9 px-4" onClick={handleLogout}>
+          로그아웃
+        </Button>
+      </div>
+    ) : (
+      <Link href={ROUTES.LOGIN}>
+        <Button variant="secondary" className="h-9 px-4">
+          로그인
+        </Button>
+      </Link>
+    );
 
   return (
     <header className="border-foreground/10 bg-background/90 sticky top-0 z-50 border-b backdrop-blur-md">
@@ -72,13 +101,7 @@ export function Header() {
           })}
         </nav>
 
-        <div className="hidden md:block">
-          <Link href={ROUTES.LOGIN}>
-            <Button variant="secondary" className="h-9 px-4">
-              로그인
-            </Button>
-          </Link>
-        </div>
+        <div className="hidden md:block">{authArea}</div>
 
         <button
           type="button"
@@ -118,7 +141,7 @@ export function Header() {
         id="mobile-nav"
         className={cn(
           'border-foreground/10 overflow-hidden border-t transition-[max-height,opacity] duration-200 md:hidden',
-          isMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 border-t-0 opacity-0',
+          isMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 border-t-0 opacity-0',
         )}
       >
         <nav
@@ -144,11 +167,28 @@ export function Header() {
               </Link>
             );
           })}
-          <Link href={ROUTES.LOGIN} className="mt-2 px-3 pb-1">
-            <Button variant="secondary" className="h-10 w-full">
-              로그인
-            </Button>
-          </Link>
+          <div className="mt-2 px-3 pb-1">
+            {isHydrated && token && user ? (
+              <div className="flex flex-col gap-2">
+                <Link href={ROUTES.MYPAGE} className="text-sm font-medium">
+                  {user.nickname} (마이페이지)
+                </Link>
+                <Button
+                  variant="secondary"
+                  className="h-10 w-full"
+                  onClick={handleLogout}
+                >
+                  로그아웃
+                </Button>
+              </div>
+            ) : (
+              <Link href={ROUTES.LOGIN}>
+                <Button variant="secondary" className="h-10 w-full">
+                  로그인
+                </Button>
+              </Link>
+            )}
+          </div>
         </nav>
       </div>
     </header>

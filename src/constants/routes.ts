@@ -7,6 +7,7 @@ export const ROUTES = {
   POST_WRITE: '/posts/write',
   POST_EDIT: (id: string) => `/posts/edit/${id}`,
   MYPAGE: '/mypage',
+  VERIFY: '/verify',
   BOARD: '/posts',
   RECOMMEND: '/recommend',
   BOOKS: '/books',

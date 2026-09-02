@@ -1,1 +1,1 @@
-export { useBookStore } from './useBookStore';
+export { useAuthStore } from './useAuthStore';
