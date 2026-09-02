@@ -13,8 +13,6 @@ jobs:
   deploy:
     name: Deploy to server
     runs-on: ubuntu-latest
-    # Secrets 미설정 시 배포 스킵 (CI만 동작)
-    if: ${{ secrets.SSH_HOST != '' && secrets.SSH_USER != '' && secrets.SSH_KEY != '' }}
     steps:
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.2.0
@@ -23,10 +21,11 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT || 22 }}
+          command_timeout: 40m
           script: |
             set -e
             cd ~/bookLog
             git fetch origin main
             git reset --hard origin/main
-            docker compose --env-file .env up -d --build
-            docker image prune -f
+            sudo docker compose --env-file .env up -d --build
+            sudo docker image prune -f
