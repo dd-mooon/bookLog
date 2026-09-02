@@ -6,16 +6,17 @@ services:
       POSTGRES_USER: booklog
       POSTGRES_PASSWORD: booklog
       POSTGRES_DB: booklog
-    ports:
-      - '5432:5432'
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./backend/src/db/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+    ports:
+      - '5432:5432'
     healthcheck:
       test: ['CMD-SHELL', 'pg_isready -U booklog -d booklog']
       interval: 5s
       timeout: 5s
       retries: 10
+    restart: unless-stopped
 
   backend:
     build: ./backend
@@ -27,7 +28,12 @@ services:
       PORT: 4000
       JWT_SECRET: ${JWT_SECRET:-dev-docker-secret-change-me}
       JWT_EXPIRES_IN: 7d
-      FRONTEND_URL: http://localhost:3000
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:3000}
+      SMTP_HOST: ${SMTP_HOST:-}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_USER: ${SMTP_USER:-}
+      SMTP_PASS: ${SMTP_PASS:-}
+      SMTP_FROM: ${SMTP_FROM:-noreply@booklog.com}
     depends_on:
       postgres:
         condition: service_healthy
@@ -38,12 +44,12 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        NEXT_PUBLIC_API_BASE_URL: http://localhost:4000/api
+        NEXT_PUBLIC_API_BASE_URL: ${NEXT_PUBLIC_API_BASE_URL:-http://localhost:4000/api}
     container_name: booklog-frontend
     ports:
       - '3000:3000'
     environment:
-      NEXT_PUBLIC_API_BASE_URL: http://localhost:4000/api
+      NEXT_PUBLIC_API_BASE_URL: ${NEXT_PUBLIC_API_BASE_URL:-http://localhost:4000/api}
     depends_on:
       - backend
     restart: unless-stopped

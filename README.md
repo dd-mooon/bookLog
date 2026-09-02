@@ -16,7 +16,7 @@
 
 ```bash
 # 프로젝트 루트
-cp .env.docker.example .env   # 선택 (JWT_SECRET)
+cp .env.docker.example .env   # 로컬: 기본값 / 배포: PUBLIC_HOST 수정
 docker compose up --build
 ```
 
@@ -27,6 +27,19 @@ docker compose up --build
 | Swagger | http://localhost:4000/api-docs |
 
 종료: `docker compose down`
+
+## 클라우드 배포
+
+Oracle Cloud 등 VM에 Docker 설치 후:
+
+```bash
+git clone https://github.com/dd-mooon/bookLog.git ~/bookLog
+cd ~/bookLog
+cp .env.docker.example .env   # 공인 IP로 수정
+./scripts/deploy.sh
+```
+
+GitHub Actions 자동 배포: [docs/08-deploy.md](./docs/08-deploy.md)
 
 ## Getting Started (로컬 개발)
 

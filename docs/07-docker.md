@@ -42,10 +42,12 @@ docker-compose.yml
 
 - [x] `docker compose up --build`
 - [x] DB 초기화 (schema.sql mount or init script)
+- [x] 프로덕션 환경 변수 (`.env.docker.example`)
 
 ### 문서
 
 - [x] README에 Docker 실행 방법 추가
+- [x] 클라우드 배포 가이드 → [08-deploy.md](./08-deploy.md)
 
 ---
 
