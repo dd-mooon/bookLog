@@ -1,6 +1,6 @@
 # 05. 댓글 (Comments)
 
-**상태:** ⬜ 미착수  
+**상태:** ✅ Backend 완료 (Frontend 미연동)  
 **선행:** [04-posts](./04-posts.md)  
 **후행:** [06-frontend](./06-frontend.md)
 

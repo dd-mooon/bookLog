@@ -1,6 +1,6 @@
 # 04. 게시판 (Posts)
 
-**상태:** 🟡 Frontend UI만 (API 미연동)  
+**상태:** ✅ Backend 완료 (Frontend UI만)  
 **선행:** [03-auth](./03-auth.md)  
 **후행:** [05-comments](./05-comments.md), [06-frontend](./06-frontend.md)
 

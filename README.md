@@ -22,7 +22,32 @@ npm run dev
 
 [http://localhost:3000](http://localhost:3000)
 
-> Backend · Docker 연동 후 전체 실행 방법은 [docs/07-docker.md](./docs/07-docker.md) 참고
+## Backend 실행
+
+```bash
+docker compose up -d postgres
+
+cd backend
+cp .env.example .env
+npm install
+npm run db:setup
+npm run dev
+```
+
+- API: http://localhost:4000
+- Swagger: http://localhost:4000/api-docs
+
+## 시드 계정 (테스트용)
+
+`npm run db:setup` 실행 후 아래 계정으로 로그인할 수 있습니다.
+
+| email | password |
+| --- | --- |
+| demo@booklog.com | password123 |
+
+> Backend 상세: [backend/README.md](./backend/README.md)
+
+> Backend · Docker 전체 구성은 [docs/07-docker.md](./docs/07-docker.md) 참고
 
 ## 기능별 작업 가이드
 

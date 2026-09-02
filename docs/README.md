@@ -9,10 +9,10 @@
 | --- | --- | --- | --- |
 | 0 | 전체 개요 · 작업 순서 | [00-overview.md](./00-overview.md) | 🟡 진행 중 |
 | 1 | Database | [01-database.md](./01-database.md) | ✅ 완료 |
-| 2 | Backend · API · Swagger | [02-backend-api.md](./02-backend-api.md) | ⬜ 미착수 |
-| 3 | Auth (로그인 · 회원가입) | [03-auth.md](./03-auth.md) | ⬜ 미착수 |
-| 4 | 게시판 (Posts) | [04-posts.md](./04-posts.md) | 🟡 UI만 |
-| 5 | 댓글 (Comments) | [05-comments.md](./05-comments.md) | ⬜ 미착수 |
+| 2 | Backend · API · Swagger | [02-backend-api.md](./02-backend-api.md) | ✅ 완료 |
+| 3 | Auth (로그인 · 회원가입) | [03-auth.md](./03-auth.md) | ✅ Backend |
+| 4 | 게시판 (Posts) | [04-posts.md](./04-posts.md) | ✅ Backend |
+| 5 | 댓글 (Comments) | [05-comments.md](./05-comments.md) | ✅ Backend |
 | 6 | Frontend 연동 | [06-frontend.md](./06-frontend.md) | 🟡 UI만 |
 | 7 | Docker | [07-docker.md](./07-docker.md) | ⬜ 미착수 |
 | 8 | 배포 · GitHub Actions | [08-deploy.md](./08-deploy.md) | ⬜ 미착수 |

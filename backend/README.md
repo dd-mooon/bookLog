@@ -1,37 +1,43 @@
-# Backend — Database
+# Backend — Book Log API
 
-PostgreSQL 스키마 및 마이그레이션 스크립트입니다.
+Express + PostgreSQL REST API
 
-## 로컬 실행
-
-### 1. PostgreSQL 실행 (Docker)
+## 실행
 
 ```bash
-# 프로젝트 루트
+# 1. DB (프로젝트 루트)
 docker compose up -d postgres
-```
 
-### 2. 환경 변수
-
-```bash
+# 2. Backend
 cd backend
 cp .env.example .env
-```
-
-### 3. 의존성 설치 · 마이그레이션 · 시드
-
-```bash
 npm install
 npm run db:setup
+npm run dev
 ```
 
-## 스크립트
+- API: http://localhost:4000
+- Swagger: http://localhost:4000/api-docs
+- Health: http://localhost:4000/health
 
-| 명령어 | 설명 |
-| --- | --- |
-| `npm run db:migrate` | schema.sql 실행 |
-| `npm run db:seed` | 데모 데이터 삽입 |
-| `npm run db:setup` | migrate + seed |
+## API 엔드포인트
+
+| Method | Path | Auth |
+| --- | --- | --- |
+| POST | `/api/auth/signup` | - |
+| POST | `/api/auth/login` | - |
+| GET | `/api/auth/verify/:token` | - |
+| GET | `/api/auth/me` | ✅ |
+| GET | `/api/posts?page&limit` | - |
+| GET | `/api/posts/me/list` | ✅ |
+| GET | `/api/posts/:id` | - |
+| POST | `/api/posts` | ✅ |
+| PATCH | `/api/posts/:id` | ✅ 본인 |
+| DELETE | `/api/posts/:id` | ✅ 본인 |
+| GET | `/api/posts/:id/comments` | - |
+| POST | `/api/posts/:id/comments` | ✅ |
+| PATCH | `/api/comments/:id` | ✅ 본인 |
+| DELETE | `/api/comments/:id` | ✅ 본인 |
 
 ## 시드 계정
 
@@ -39,10 +45,10 @@ npm run db:setup
 | --- | --- |
 | demo@booklog.com | password123 |
 
-## 테이블
+## Scripts
 
-- `users` — 회원 (email UNIQUE, bcrypt hash)
-- `posts` — 게시글 (user_id FK, CASCADE)
-- `comments` — 댓글 (post_id, user_id FK, CASCADE)
-
-상세 ERD: [docs/01-database.md](../docs/01-database.md)
+| 명령어 | 설명 |
+| --- | --- |
+| `npm run dev` | 개발 서버 (watch) |
+| `npm run start` | 프로덕션 실행 |
+| `npm run db:setup` | migrate + seed |

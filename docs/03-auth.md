@@ -1,6 +1,6 @@
 # 03. Auth — 로그인 · 회원가입
 
-**상태:** ⬜ 미착수 (Frontend 폼 UI만 있음)  
+**상태:** ✅ Backend 완료 (Frontend 미연동)  
 **선행:** [01-database](./01-database.md), [02-backend-api](./02-backend-api.md)  
 **후행:** [04-posts](./04-posts.md), [06-frontend](./06-frontend.md)
 

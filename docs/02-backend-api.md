@@ -1,6 +1,6 @@
 # 02. Backend · API · Swagger
 
-**상태:** ⬜ 미착수  
+**상태:** ✅ Backend 완료  
 **선행:** [01-database](./01-database.md)  
 **후행:** [03-auth](./03-auth.md), [04-posts](./04-posts.md), [05-comments](./05-comments.md)
 
