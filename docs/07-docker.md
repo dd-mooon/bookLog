@@ -1,6 +1,6 @@
 # 07. Docker
 
-**상태:** ⬜ 미착수  
+**상태:** ✅ 완료  
 **선행:** [02-backend-api](./02-backend-api.md), [06-frontend](./06-frontend.md) (로컬 동작 확인 후)  
 **후행:** [08-deploy](./08-deploy.md)
 
@@ -29,23 +29,23 @@ docker-compose.yml
 
 ### Dockerfile
 
-- [ ] `backend/Dockerfile` — Node alpine, multi-stage
-- [ ] `Dockerfile` (frontend) — Next.js standalone build
+- [x] `backend/Dockerfile` — Node alpine, multi-stage
+- [x] `Dockerfile` (frontend) — Next.js standalone build
 
 ### docker-compose.yml
 
-- [ ] `postgres` — volume, healthcheck
-- [ ] `backend` — depends_on postgres, env_file
-- [ ] `frontend` — depends_on backend, NEXT_PUBLIC_API_BASE_URL
+- [x] `postgres` — volume, healthcheck
+- [x] `backend` — depends_on postgres, env_file
+- [x] `frontend` — depends_on backend, NEXT_PUBLIC_API_BASE_URL
 
 ### 스크립트
 
-- [ ] `docker compose up --build`
-- [ ] DB 초기화 (schema.sql mount or init script)
+- [x] `docker compose up --build`
+- [x] DB 초기화 (schema.sql mount or init script)
 
 ### 문서
 
-- [ ] README에 Docker 실행 방법 추가
+- [x] README에 Docker 실행 방법 추가
 
 ---
 

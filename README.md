@@ -12,7 +12,23 @@
 | Zustand | Swagger | |
 | Axios | | |
 
-## Getting Started (Frontend only — 현재)
+## Docker로 전체 실행 (Frontend + Backend + DB)
+
+```bash
+# 프로젝트 루트
+cp .env.docker.example .env   # 선택 (JWT_SECRET)
+docker compose up --build
+```
+
+| 서비스 | URL |
+| --- | --- |
+| Frontend | http://localhost:3000 |
+| Backend API | http://localhost:4000 |
+| Swagger | http://localhost:4000/api-docs |
+
+종료: `docker compose down`
+
+## Getting Started (로컬 개발)
 
 ```bash
 npm install

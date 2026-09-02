@@ -15,7 +15,38 @@ services:
       test: ['CMD-SHELL', 'pg_isready -U booklog -d booklog']
       interval: 5s
       timeout: 5s
-      retries: 5
+      retries: 10
+
+  backend:
+    build: ./backend
+    container_name: booklog-backend
+    ports:
+      - '4000:4000'
+    environment:
+      DATABASE_URL: postgresql://booklog:booklog@postgres:5432/booklog
+      PORT: 4000
+      JWT_SECRET: ${JWT_SECRET:-dev-docker-secret-change-me}
+      JWT_EXPIRES_IN: 7d
+      FRONTEND_URL: http://localhost:3000
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_BASE_URL: http://localhost:4000/api
+    container_name: booklog-frontend
+    ports:
+      - '3000:3000'
+    environment:
+      NEXT_PUBLIC_API_BASE_URL: http://localhost:4000/api
+    depends_on:
+      - backend
+    restart: unless-stopped
 
 volumes:
   pgdata:
