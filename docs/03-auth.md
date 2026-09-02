@@ -1,6 +1,6 @@
 # 03. Auth — 로그인 · 회원가입
 
-**상태:** ✅ Backend 완료 (Frontend 미연동)  
+**상태:** ✅ Backend · Frontend 완료  
 **선행:** [01-database](./01-database.md), [02-backend-api](./02-backend-api.md)  
 **후행:** [04-posts](./04-posts.md), [06-frontend](./06-frontend.md)
 
@@ -10,10 +10,11 @@
 
 ### 로그인
 
-- [ ] 이메일 + 비밀번호 로그인
-- [ ] JWT 기반 인증
-- [ ] 로그in 성공 시 토큰 발급
-- [ ] 인증 필요 API 보호
+- [x] 이메일 + 비밀번호 로그인
+- [x] JWT 기반 인증
+- [x] 로그in 성공 시 토큰 발급
+- [x] 인증 필요 API 보호
+- [x] 아이디/비밀번호 저장 (선택, localStorage)
 
 ### 회원가입
 
@@ -100,12 +101,27 @@
 
 → 상세: [06-frontend.md](./06-frontend.md)
 
-- [ ] `useAuthStore` (Zustand + persist)
-- [ ] `/login`, `/signup` 폼 submit 연동
-- [ ] Axios interceptor — Bearer 토큰
-- [ ] 401 → 로그아웃 + `/login` redirect
-- [ ] Header: 로그인/로그아웃 상태
-- [ ] 인증 필요 페이지 가드 (`/posts/write`, `/mypage` 등)
+- [x] `useAuthStore` (Zustand + persist)
+- [x] `/login`, `/signup` 폼 submit 연동
+- [x] Axios interceptor — Bearer 토큰
+- [x] 401 → 로그아웃 + `/login` redirect
+- [x] Header: 로그인/로그아웃 상태
+- [x] 인증 필요 페이지 가드 (`/posts/write`, `/mypage` 등)
+- [x] 로그인 — 아이디/비밀번호 저장 (체크박스 + localStorage)
+
+### 아이디/비밀번호 저장 (Frontend)
+
+| 항목 | 내용 |
+| --- | --- |
+| UI | `/login` — 「아이디/비밀번호 저장」 체크박스 |
+| 저장 시점 | 로그인 **성공** 후, 체크된 경우에만 저장 |
+| 저장 위치 | `localStorage` (`booklog-login-credentials`) |
+| 저장 값 | `email`, `password` (JSON) |
+| 해제 | 체크 해제 후 로그인 → 저장값 삭제 |
+| 초기 로드 | 저장값 있으면 입력란 자동 채움 + 체크박스 ON |
+| 구현 파일 | `LoginForm.tsx`, `utils/loginCredentials.ts`, `constants/storage.ts` |
+
+> **Note:** 학습/데모용 편의 기능입니다. 실서비스에서는 비밀번호 평문 저장 대신 이메일만 저장하거나 브라우저 자동완성에 맡기는 것이 일반적입니다.
 
 ---
 
@@ -128,6 +144,7 @@
 | --- | --- |
 | 로그in 상태 어디에? | Zustand + localStorage persist |
 | 새로고침 시 유지? | persist rehydrate + `/auth/me` 검증 |
+| 아이디/비밀번호 저장? | 체크 시 localStorage — 로그인 성공 후 저장, 다음 방문 시 자동 입력 |
 | 토큰 전달? | Axios `Authorization: Bearer` |
 | 토큰 만료? | 401 interceptor → logout |
 | 이메일 인증? | UUID token + verify API + SMTP |

@@ -90,4 +90,5 @@ bookLog/
 | Zustand | auth 토큰·유저, 선택적 UI 상태 |
 | Axios | interceptor로 Bearer 토큰, 401 시 로그아웃 |
 | 로그in 유지 | localStorage + Zustand persist / 새로고침 시 hydrate |
+| 아이디/비밀번호 저장 | 로그인 체크박스 → localStorage — [03-auth.md](./03-auth.md) |
 | 이메일 인증 | 가입 시 token 발급 → 링크 클릭 → `isVerified` true |

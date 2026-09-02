@@ -17,7 +17,8 @@ src/
   store/         # useBookStore (→ useAuthStore 추가)
   hooks/
   types/         # book.ts, post.ts
-  constants/     # routes.ts, api.ts
+  constants/     # routes.ts, api.ts, storage.ts
+  utils/         # loginCredentials.ts (로그인 정보 저장)
 ```
 
 ---
@@ -59,11 +60,18 @@ NEXT_PUBLIC_API_BASE_URL=http://localhost:4000/api
 - [ ] 적용: `/posts/write`, `/posts/edit/[id]`, `/mypage`
 - [ ] `/verify` 페이지 (이메일 인증)
 
+### 로그인 — 아이디/비밀번호 저장
+
+- [x] 「아이디/비밀번호 저장」 체크박스 (`LoginForm`)
+- [x] 로그인 성공 시 `localStorage` 저장 / 체크 해제 시 삭제
+- [x] 페이지 진입 시 저장값 자동 불러오기
+- [x] `utils/loginCredentials.ts`, `constants/storage.ts`
+
 ### 페이지별 연동
 
 | 페이지 | 작업 |
 | --- | --- |
-| `/login` | login API → store → redirect |
+| `/login` | login API → store → redirect · **아이디/비밀번호 저장** |
 | `/signup` | signup API → 안내 |
 | `/posts` | 목록 + 페이징 |
 | `/posts/[id]` | 상세 + 댓글 |
@@ -97,5 +105,6 @@ NEXT_PUBLIC_API_BASE_URL=http://localhost:4000/api
 | 에러 처리? | interceptor + 페이지별 try/catch |
 | 로그in 확인? | store.token + `/auth/me` |
 | 새로고침 유지? | Zustand persist |
+| 아이디/비밀번호 저장? | `LoginForm` + `localStorage` (`booklog-login-credentials`) |
 | 보호 페이지? | AuthGuard |
 | 토큰 만료? | 401 → logout + redirect |
