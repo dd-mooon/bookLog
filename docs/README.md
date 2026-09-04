@@ -12,10 +12,10 @@
 | 2 | Backend · API · Swagger | [02-backend-api.md](./02-backend-api.md) | ✅ 완료 |
 | 3 | Auth (로그인 · 회원가입) | [03-auth.md](./03-auth.md) | ✅ 완료 |
 | 4 | 게시판 (Posts) | [04-posts.md](./04-posts.md) | ✅ Backend |
-| 5 | 댓글 (Comments) | [05-comments.md](./05-comments.md) | ✅ Backend |
+| 5 | 댓글 (Comments) | [05-comments.md](./05-comments.md) | ✅ 완료 |
 | 6 | Frontend 연동 | [06-frontend.md](./06-frontend.md) | ✅ 완료 |
 | 7 | Docker | [07-docker.md](./07-docker.md) | ✅ 완료 |
-| 8 | 배포 · GitHub Actions | [08-deploy.md](./08-deploy.md) | 🟡 인프라 준비 |
+| 8 | 배포 · GitHub Actions | [08-deploy.md](./08-deploy.md) | ✅ 완료 |
 | - | **인수인계 (다른 맥용)** | [handoff.md](./handoff.md) | 📝 최신 상태 |
 
 **범례:** ⬜ 미착수 · 🟡 일부 · ✅ 완료
@@ -51,6 +51,6 @@
 
 ## 제출물 체크
 
-- [ ] GitHub Repository
-- [ ] 배포된 서비스 URL
-- [ ] Swagger API 문서 URL
+- [x] GitHub Repository — https://github.com/dd-mooon/bookLog
+- [x] 배포된 서비스 URL — http://35.252.113.228:3000
+- [x] Swagger API 문서 URL — http://35.252.113.228:4000/api-docs

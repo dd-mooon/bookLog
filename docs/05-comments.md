@@ -1,6 +1,6 @@
 # 05. 댓글 (Comments)
 
-**상태:** ✅ Backend 완료 (Frontend 미연동)  
+**상태:** ✅ 완료 (BE + FE 작성·수정·삭제)  
 **선행:** [04-posts](./04-posts.md)  
 **후행:** [06-frontend](./06-frontend.md)
 
@@ -8,9 +8,9 @@
 
 ## 과제 요구사항
 
-- [ ] 로그인 사용자만 작성
-- [ ] 본인 댓글만 수정/삭제
-- [ ] 작성 · 조회 · 삭제 (수정도 구현 권장)
+- [x] 로그인 사용자만 작성
+- [x] 본인 댓글만 수정/삭제
+- [x] 작성 · 조회 · 수정 · 삭제
 
 ---
 
@@ -47,19 +47,19 @@
 
 ## Backend 작업
 
-- [ ] comments CRUD
-- [ ] post 존재 여부 검증
-- [ ] 작성자 본인 검증 (수정/삭제)
-- [ ] JOIN users → authorName
-- [ ] Swagger
+- [x] comments CRUD
+- [x] post 존재 여부 검증
+- [x] 작성자 본인 검증 (수정/삭제)
+- [x] JOIN users → authorName
+- [x] Swagger
 
 ## Frontend 작업
 
-- [ ] `commentService`
-- [ ] `CommentList` 컴ponent
-- [ ] `CommentForm` (로그인 시만)
-- [ ] `CommentItem` — 본인일 때 수정/삭제
-- [ ] `/posts/[id]` 페이지에 통합
+- [x] `commentService`
+- [x] `CommentSection` (목록 · 작성 · 수정 · 삭제)
+- [x] 로그인 시만 작성 폼
+- [x] 본인 댓글만 수정/삭제
+- [x] `/posts/[id]` 페이지에 통합
 
 ---
 

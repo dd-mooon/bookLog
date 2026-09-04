@@ -7,11 +7,10 @@
 
 ## 한 줄 요약
 
-- **클라우드 배포(수동)는 이미 성공**한 상태입니다. (GCP + Docker Compose)
-- **GitHub Actions 자동 배포**는 SSH 연동까지 됐고, e2-micro 메모리 이슈로 빌드가 오래 걸리거나 실패한 적이 있습니다.
-- VM에 **스왑 2GB**를 추가했고, turbopack 제거 등 빌드 최적화를 push 했습니다.
-- **GitHub Actions 자동 배포 성공** (SSH_KEY_B64 + 스왑 2GB + turbopack 제거 후)
-- **월요일 제출** 우선: 아래 URL로 스모크 테스트 → 여유 있으면 이메일 인증 설명 정리
+- **클라우드 배포 + GitHub Actions Deploy 성공** (GCP e2-micro + Docker Compose + 스왑 2GB)
+- **API 스모크 통과**: 로그인 · 글 작성 · 댓글 · health · FE 200
+- CI: `eslint`에서 `backend/**` ignore + build `NODE_OPTIONS` (로컬 lint/build OK, push 후 Actions 확인)
+- **월요일 제출**: 아래 URL + 데모 계정. VM 실행 유지 또는 심사 전 시작
 
 ---
 
@@ -90,7 +89,7 @@ docker compose --env-file .env up -d --build
 
 ## GitHub Actions
 
-- CI: `.github/workflows/ci.yml` (lint/build — Frontend build가 실패한 적 있음)
+- CI: `.github/workflows/ci.yml` (lint/build — `backend/**` eslint ignore, Node 메모리 상향)
 - Deploy: `.github/workflows/deploy.yml`
   - `SSH_HOST`, `SSH_USER`, `SSH_KEY_B64` Secrets 사용
   - base64 키로 SSH 후 `docker compose up -d --build`
@@ -128,7 +127,7 @@ https://github.com/dd-mooon/bookLog/actions/workflows/deploy.yml
 Mac에서 테스트:
 
 ```bash
-ssh -i ~/.ssh/booklog_gcp vjwyp0308@34.182.35.72 'echo OK'
+ssh -i ~/.ssh/booklog_gcp vjwyp0308@35.252.113.228 'echo OK'
 ```
 
 ---
@@ -164,11 +163,11 @@ Docker로 돌릴 때는 Homebrew Postgres / npm run dev와 **포트 충돌** 주
 
 ### 보완하면 좋은 것 (월요 전까지)
 
-1. **제출 URL이 실제로 열리는지** (VM 실행 중 + compose up)
-2. 로그인 / 글 CRUD / 댓글 / 페이징 스모크 테스트
-3. GitHub Actions Deploy **성공 1회** (여유 있으면)
-4. 이메일 인증: SMTP 없으면 `docker compose logs backend`에 인증 링크 출력
-5. (선택) 댓글 수정 UI — API는 있음, FE는 삭제만
+1. ~~제출 URL 접속~~ · ~~API 스모크~~ · ~~Actions Deploy 성공~~
+2. 브라우저 UI 스모크 (로그인 · CRUD · 페이징 · 댓글 수정)
+3. 이메일 인증: SMTP 없으면 `docker compose logs backend`에 인증 링크 출력
+4. CI push 후 Actions Frontend lint/build 초록 확인
+5. ~~댓글 수정 UI~~ (FE 수정/저장/취소 추가됨 — push 후 배포 반영)
 
 ### 평가 질문 포인트
 
