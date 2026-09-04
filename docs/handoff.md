@@ -10,8 +10,8 @@
 - **클라우드 배포(수동)는 이미 성공**한 상태입니다. (GCP + Docker Compose)
 - **GitHub Actions 자동 배포**는 SSH 연동까지 됐고, e2-micro 메모리 이슈로 빌드가 오래 걸리거나 실패한 적이 있습니다.
 - VM에 **스왑 2GB**를 추가했고, turbopack 제거 등 빌드 최적화를 push 했습니다.
-- 2026-09-04 최적화 push 직후 Deploy/CI는 다시 **failure**였습니다. (로그 확인 필요)
-- **월요일 제출**이 우선이면: 사이트 URL이 열리는지 확인 → 기능 스모크 테스트 → Actions는 여유 있을 때 마무리.
+- **GitHub Actions 자동 배포 성공** (SSH_KEY_B64 + 스왑 2GB + turbopack 제거 후)
+- **월요일 제출** 우선: 아래 URL로 스모크 테스트 → 여유 있으면 이메일 인증 설명 정리
 
 ---
 
@@ -20,9 +20,9 @@
 | 항목 | URL |
 | --- | --- |
 | GitHub | https://github.com/dd-mooon/bookLog |
-| Frontend | http://34.182.35.72:3000 (외부 IP가 바뀌면 GCP에서 다시 확인) |
-| Swagger | http://34.182.35.72:4000/api-docs |
-| Health | http://34.182.35.72:4000/health |
+| Frontend | http://35.252.113.228:3000 (외부 IP가 바뀌면 GCP에서 다시 확인) |
+| Swagger | http://35.252.113.228:4000/api-docs |
+| Health | http://35.252.113.228:4000/health |
 
 ### 데모 계정
 
@@ -73,9 +73,9 @@ sudo bash ~/bookLog/scripts/setup-swap.sh
 경로: `~/bookLog/.env`
 
 ```env
-PUBLIC_HOST=34.182.35.72
-NEXT_PUBLIC_API_BASE_URL=http://34.182.35.72:4000/api
-FRONTEND_URL=http://34.182.35.72:3000
+PUBLIC_HOST=35.252.113.228
+NEXT_PUBLIC_API_BASE_URL=http://35.252.113.228:4000/api
+FRONTEND_URL=http://35.252.113.228:3000
 JWT_SECRET=booklog-prod-secret-change-me-please-32chars
 ```
 
@@ -103,7 +103,7 @@ https://github.com/dd-mooon/bookLog/settings/secrets/actions
 
 | Name | 값 |
 | --- | --- |
-| `SSH_HOST` | VM 외부 IP (예: `34.182.35.72`) |
+| `SSH_HOST` | VM 외부 IP (현재 `35.252.113.228`) |
 | `SSH_USER` | `vjwyp0308` |
 | `SSH_KEY_B64` | `base64 < ~/.ssh/booklog_gcp \| tr -d '\n'` 결과 |
 
