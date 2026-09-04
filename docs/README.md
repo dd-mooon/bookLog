@@ -16,6 +16,7 @@
 | 6 | Frontend 연동 | [06-frontend.md](./06-frontend.md) | ✅ 완료 |
 | 7 | Docker | [07-docker.md](./07-docker.md) | ✅ 완료 |
 | 8 | 배포 · GitHub Actions | [08-deploy.md](./08-deploy.md) | 🟡 인프라 준비 |
+| - | **인수인계 (다른 맥용)** | [handoff.md](./handoff.md) | 📝 최신 상태 |
 
 **범례:** ⬜ 미착수 · 🟡 일부 · ✅ 완료
 
