@@ -39,6 +39,15 @@ jobs:
           cd ~/bookLog
           git fetch origin main
           git reset --hard origin/main
+
+          # 빌드 전 메모리 확보 (기존 컨테이너 일시 중지)
+          docker compose --env-file .env stop || true
+
+          # 스왑이 없으면 안내 (브라우저 SSH에서 setup-swap.sh 실행 필요)
+          if ! swapon --show | grep -q .; then
+            echo "WARNING: no swap detected. Build may OOM on e2-micro."
+          fi
+
           docker compose --env-file .env up -d --build
           docker image prune -f
           ENDSSH

@@ -11,6 +11,7 @@ COPY . .
 
 ARG NEXT_PUBLIC_API_BASE_URL=http://localhost:4000/api
 ENV NEXT_PUBLIC_API_BASE_URL=$NEXT_PUBLIC_API_BASE_URL
+ENV NODE_OPTIONS=--max-old-space-size=768
 
 RUN npm run build
 
