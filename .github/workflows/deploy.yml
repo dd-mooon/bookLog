@@ -14,18 +14,31 @@ jobs:
     name: Deploy to server
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy via SSH
-        uses: appleboy/ssh-action@v1.2.0
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          port: ${{ secrets.SSH_PORT || 22 }}
-          command_timeout: 40m
-          script: |
-            set -e
-            cd ~/bookLog
-            git fetch origin main
-            git reset --hard origin/main
-            sudo docker compose --env-file .env up -d --build
-            sudo docker image prune -f
+      - name: Deploy over SSH
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_KEY_B64: ${{ secrets.SSH_KEY_B64 }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${SSH_HOST}" ] || [ -z "${SSH_USER}" ] || [ -z "${SSH_KEY_B64}" ]; then
+            echo "Missing SSH_HOST / SSH_USER / SSH_KEY_B64 secrets"
+            exit 1
+          fi
+
+          mkdir -p ~/.ssh
+          echo "$SSH_KEY_B64" | base64 -d > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+
+          ssh -i ~/.ssh/deploy_key \
+            -o IdentitiesOnly=yes \
+            -o StrictHostKeyChecking=accept-new \
+            "${SSH_USER}@${SSH_HOST}" bash << 'ENDSSH'
+          set -euo pipefail
+          cd ~/bookLog
+          git fetch origin main
+          git reset --hard origin/main
+          sudo docker compose --env-file .env up -d --build
+          sudo docker image prune -f
+          ENDSSH
